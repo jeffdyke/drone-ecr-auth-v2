@@ -25,7 +25,7 @@ attach() {
     echo "No image found"
     exit 1
   fi
-  sudo docker run -it -v /var/run/docker.sock:/var/run/docker.sock $latestImage /bin/bash
+  sudo docker run -it -v /var/run/docker.sock:/var/run/docker.sock $latest /bin/bash
 }
 
 test() {
