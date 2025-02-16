@@ -10,7 +10,7 @@ apk update
 apk add --no-cache moreutils envsubst
 REGION=$REGION envsubst < /root/.aws/config | sponge /root/.aws/config
 REGION=$REGION envsubst < /root/.aws/credentials | sponge /root/.aws/credentials
-AWS_ACCOUNT=${AWS_ACCOUNT} REGION=${REGION} < /root/.docker/config.json | sponge /root/.docker/config.json
+AWS_ACCOUNT=${AWS_ACCOUNT} REGION=${REGION} envsubst < /root/.docker/config.json | sponge /root/.docker/config.json
 BASE
 
 FROM python:3.13-alpine3.21
