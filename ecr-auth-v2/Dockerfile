@@ -1,8 +1,9 @@
-FROM python:3.11-alpine
+FROM alpine/java:21-jdk
 RUN <<BASE
 echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 apk update
 apk add aws-cli docker bash
+mkdir -p /root/.aws
 cat <<CONFIG > "/root/.aws/config"
 [default]
 region=us-east-1
