@@ -2,14 +2,14 @@ FROM alpine AS build
 
 ARG REGION
 ARG AWS_ACCOUNT
-
+ARG AWS_ROLE
 COPY config/.aws /root/.aws
 COPY config/.docker/config.json /root/.docker/config.json
 RUN <<BASE
 apk update
 apk add --no-cache moreutils envsubst
 REGION=$REGION envsubst < /root/.aws/config | sponge /root/.aws/config
-REGION=$REGION envsubst < /root/.aws/credentials | sponge /root/.aws/credentials
+AWS_ROLE=${AWS_ROLE} REGION=$REGION envsubst < /root/.aws/credentials | sponge /root/.aws/credentials
 AWS_ACCOUNT=${AWS_ACCOUNT} REGION=${REGION} envsubst < /root/.docker/config.json | sponge /root/.docker/config.json
 BASE
 
