@@ -1,4 +1,4 @@
-FROM alpine3.21 AS build
+FROM alpine AS build
 
 ARG REGION
 ARG PRIVATE_REPO="foo"
