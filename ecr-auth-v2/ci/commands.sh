@@ -28,7 +28,7 @@ attach() {
 }
 
 test() {
-  sudo docker run -t $(latestImage) "aws ecr get-login-password | docker login --username AWS --password-stdin 668874212870.dkr.ecr.us-east-1.amazonaws.com"
+  sudo docker run -t $(latestImage) "aws ecr get-login-password | docker login --username AWS --password-stdin"
 }
 
 if [ ! -z $operation ]; then
