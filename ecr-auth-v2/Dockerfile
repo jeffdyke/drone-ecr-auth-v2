@@ -14,5 +14,7 @@ BASE
 
 FROM python:3.13-alpine3.21
 COPY --from=build /root/.aws /root/.aws
-RUN apk update && apk add --no-cache aws-cli docker bash
+RUN apk update && apk add --no-cache aws-cli docker bash docker-credential-ecr-login
+RUN mkdir /root/.docker
+COPY config/.docker/config.json /root/.docker/config.json
 ENTRYPOINT [ "/bin/bash" ]
