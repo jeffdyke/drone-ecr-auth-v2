@@ -8,7 +8,7 @@ latestImage() {
   docker images | grep "jeffdyke/ecr-auth-v2" | awk '{print $3}' | sort | uniq
 }
 clean() {
-  echo "$(latestImage)" | xargs sudo docker rmi --force 2 > /dev/null || echo "No images to delete"
+  echo "$(latestImage)" | xargs sudo docker rmi --force 2>/dev/null || echo "No images to delete"
   sudo docker builder prune -f
 }
 build() {
