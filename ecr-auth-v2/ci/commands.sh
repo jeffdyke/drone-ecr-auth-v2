@@ -9,7 +9,7 @@ latestImage() {
   docker images | grep "jeffdyke/ecr-auth-v2" | awk '{print $3}'
 }
 clean() {
-  echo "${latestImage}" | xargs sudo docker rmi --force || echo "No images to delete"
+  echo "$(latestImage)" | xargs sudo docker rmi --force 2 > /dev/null || echo "No images to delete"
   sudo docker builder prune -f
 }
 build() {
@@ -18,6 +18,14 @@ build() {
 }
 push() {
   docker push jeffdyke/ecr-auth-v2
+}
+attach() {
+  local latest=$(latestImage)
+  if [ -z "$latest" ]; then
+    echo "No image found"
+    exit 1
+  fi
+  sudo docker run -it -v /var/run/docker.sock:/var/run/docker.sock $latestImage /bin/bash
 }
 
 test() {

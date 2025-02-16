@@ -1,6 +1,7 @@
 FROM alpine/java:21-jdk
 
 ARG REGION
+ARG PRIVATE_REPO="foo"
 RUN mkdir /root/.aws
 COPY config/.aws/config /root/.aws/config
 COPY config/.aws/credentials /root/.aws/credentials
