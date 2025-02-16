@@ -12,7 +12,7 @@ clean() {
   sudo docker builder prune -f
 }
 build() {
-  docker build --build-arg REGION=us-east-1 -t ecr-auth-v2 .
+  docker build --build-arg REGION=$REGION -t ecr-auth-v2 .
   docker tag ecr-auth-v2:latest jeffdyke/ecr-auth-v2:latest
 }
 push() {
