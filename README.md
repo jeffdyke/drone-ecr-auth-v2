@@ -32,7 +32,7 @@ This is especially useful in `Drone` and other `CI` services so your containers 
     image: jeffdyke/ecr-auth-v2:stable
     volumes: &volumes
       - name: docker
-        path: "/var/run/docker.sock"
+        path: /var/run/docker.sock
     commands:
       - docker pull 123456789.dkr.ecr.us-east-1.amazonaws.com/repo:tag
 ```
