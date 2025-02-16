@@ -1,4 +1,4 @@
-FROM python:3.13-alpine3.21
+FROM alpine3.21 as build
 
 ARG REGION
 ARG PRIVATE_REPO="foo"
@@ -7,11 +7,14 @@ COPY config/.aws/config /root/.aws/config
 COPY config/.aws/credentials /root/.aws/credentials
 RUN <<BASE
 apk update
-apk add aws-cli docker bash moreutils envsubst
+apk add moreutils envsubst
 REGION=$REGION envsubst < /root/.aws/config | sponge /root/.aws/config
 REGION=$REGION envsubst < /root/.aws/credentials | sponge /root/.aws/credentials
-echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-mkdir -v /root/.docker
+
+FROM python:3.13-alpine3.21
+COPY --from=build /root/.aws /root/.aws
+# echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+# mkdir -v /root/.docker
 BASE
 
 ENTRYPOINT [ "/bin/bash" ]
