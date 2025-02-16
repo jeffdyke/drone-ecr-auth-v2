@@ -16,7 +16,7 @@ build() {
   docker tag ecr-auth-v2:latest ${REPO}:latest
 }
 push() {
-  docker push $REPO
+  docker push $REPO:latest
 }
 attach() {
   local latest=$(latestImage)
