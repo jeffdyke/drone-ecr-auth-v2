@@ -2,15 +2,17 @@ FROM python:3.11-alpine
 RUN <<BASE
 echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 apk update
-apk add aws-cli docker docker-credential-ecr-login
-mkdir /root/.aws
+apk add aws-cli docker bash
 cat <<CONFIG > "/root/.aws/config"
 [default]
 region=us-east-1
 CONFIG
-cat <<EOF > "/root/.aws/credentials"
+cat <<CREDS > "/root/.aws/credentials"
 [default]
 credential_source=Ec2InstanceMetadata
 region=us-east-1
+CREDS
 mkdir /root/.docker
 BASE
+
+ENTRYPOINT [ "/bin/bash" ]
