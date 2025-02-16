@@ -1,4 +1,4 @@
-FROM alpine/java:21-jdk
+FROM python:3.13-alpine3.21
 
 ARG REGION
 ARG PRIVATE_REPO="foo"
@@ -14,6 +14,6 @@ echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
 mkdir -v /root/.docker
 BASE
 
-ENTRYPOINT [ "/bin/sh" ]
+ENTRYPOINT [ "/bin/bash" ]
 # FROM alpine/java:21-jdk as runner
 # COPY --from=build --chown=root:root /root/.aws /root/.aws

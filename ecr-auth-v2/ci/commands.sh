@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
 set -o pipefail
 set -e
 operation=$1; shift
@@ -25,7 +24,7 @@ attach() {
     echo "No image found"
     exit 1
   fi
-  sudo docker run -it -v /var/run/docker.sock:/var/run/docker.sock $latest /bin/bash
+  sudo docker run -it -v /var/run/docker.sock:/var/run/docker.sock $latest
 }
 
 test() {
