@@ -14,5 +14,3 @@ region=us-east-1
 CREDS
 mkdir /root/.docker
 BASE
-
-ENTRYPOINT [ "/bin/bash" ]
