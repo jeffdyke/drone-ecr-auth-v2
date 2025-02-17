@@ -20,9 +20,6 @@ build() {
   docker tag ecr-auth-v2:${tag} ${REPO}:${tag}
 }
 
-# run() {
-#   docker run -v /var/run/docker.sock:/var/run/docker.sock $REPO:latest
-# }
 push() {
   docker push $REPO:latest
 }
