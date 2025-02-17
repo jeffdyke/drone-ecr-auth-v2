@@ -16,7 +16,7 @@ latestTag() {
 }
 build() {
   local tag=$(latestTag $1)
-  docker build --build-arg AWS_ACCOUNT=$AWS_ACCOUNT --build-arg REGION=$REGION -t ecr-auth-v2 .
+  docker build -t ecr-auth-v2 .
   docker tag ecr-auth-v2:${tag} ${REPO}:${tag}
 }
 
