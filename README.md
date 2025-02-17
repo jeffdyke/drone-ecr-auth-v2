@@ -8,13 +8,14 @@ Based on omerxx/drone-ecr-auth, but using awscliv2
 ## Pull Image
 `docker pull jeffdyke/ecr-auth-v2:stable`
 
+The `latest` tag is kept up to date with `stable`
+
 ## Build your own
 ```
 cd ecr-auth-v2
-AWS_ACCOUNT=123456789 REGION=co-area-n ./build.sh build
+./build.sh build
 ```
-REGION will default to us-east-1 if omitted, otherwise, must be correct
-Script will fail during a `build` if AWS_ACCOUNT is omitted.
+
 ## Attach
 `./build.sh attach`
 
