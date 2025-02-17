@@ -11,10 +11,18 @@ clean() {
   echo "$(latestImage)" | xargs sudo docker rmi --force 2>/dev/null || echo "No images to delete"
   sudo docker builder prune -f
 }
-build() {
-  docker build --build-arg AWS_ACCOUNT=$AWS_ACCOUNT --build-arg REGION=$REGION -t ecr-auth-v2 .
-  docker tag ecr-auth-v2:latest ${REPO}:latest
+latestTag() {
+  [ ! -z "$1"] && echo "$1" || echo "latest"
 }
+build() {
+  local tag=$(latestTag $1)
+  docker build --build-arg AWS_ACCOUNT=$AWS_ACCOUNT --build-arg REGION=$REGION -t ecr-auth-v2 .
+  docker tag ecr-auth-v2:${tag} ${REPO}:${tag}
+}
+
+# run() {
+#   docker run -v /var/run/docker.sock:/var/run/docker.sock $REPO:latest
+# }
 push() {
   docker push $REPO:latest
 }
