@@ -19,6 +19,11 @@ cd ecr-auth-v2
 ## Attach
 `./build.sh attach`
 
+Which is simply
+```
+docker run -it -v /var/run/docker.sock:/var/run/docker.sock $(docker images | grep "jeffdyke/ecr-auth-v2" | awk '{print $3}' | sort | uniq | head -1)
+```
+
 ### While attached you should be able to run
 `docker pull 123456789.dkr.ecr.us-east-1.amazonaws.com/repo:tag`
 
