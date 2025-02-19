@@ -32,7 +32,7 @@ docker run -it -v /var/run/docker.sock:/var/run/docker.sock $(docker images | gr
 
 # Drone/CI
 
-This is especially useful in `Drone` and other `CI` services so your containers to login
+When used as an `image:` in a `step:` you can pull all of your images an then work with them after
 
 ## Pull once
 ### Pull Step
@@ -46,4 +46,4 @@ This is especially useful in `Drone` and other `CI` services so your containers 
       - docker pull 123456789.dkr.ecr.us-east-1.amazonaws.com/repo:tag
 ```
 ### Other Steps
-ensure `pull: never` is in any step where the image is pulled in `pull-images`
+ensure `pull: never` is in any step where the image is pulled in `pull-images` and add a dependency on that state
