@@ -2,8 +2,11 @@
 Docker based authentication to ECR private repositories
 
 Based on omerxx/drone-ecr-auth, but using awscliv2
+This is an x86 image.
 
-### This is meant to be built on a x84 system
+## AWS Requirements
+You must align your AWS permissions (EC Permission -> Role) for all that you will use this image for.
+
 
 ## Pull Image
 `docker pull jeffdyke/ecr-auth-v2:stable`
