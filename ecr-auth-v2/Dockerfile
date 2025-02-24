@@ -1,4 +1,4 @@
-FROM alpine3.21
+FROM alpine:3.21
 
 COPY config/.docker/config.json /root/.docker/config.json
 
