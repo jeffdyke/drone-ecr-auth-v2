@@ -12,7 +12,7 @@ clean() {
   sudo docker builder prune -f
 }
 latestTag() {
-  [ ! -z "$1"] && echo "$1" || echo "latest"
+  [ ! -z "$1" ] && echo "$1" || echo "latest"
 }
 build() {
   local tag=$(latestTag $1)
